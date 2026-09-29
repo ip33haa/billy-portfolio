@@ -25,6 +25,9 @@ export function Magnet({
 
   useEffect(() => {
     if (disabled) return;
+    if (typeof window !== 'undefined' && !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      return;
+    }
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!magnetRef.current) return;
