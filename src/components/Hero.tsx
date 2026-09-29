@@ -92,20 +92,32 @@ export function Hero() {
           </motion.p>
         </div>
 
-        <Magnet magnetStrength={2.2} padding={30}>
-          <div
-            className="hero__scroll-indicator"
-            onClick={scrollToSequence}
-            style={{
-              opacity: indicatorOpacity,
-              pointerEvents: indicatorOpacity < 0.1 ? 'none' : 'auto',
-            }}
-            title="Scroll to explore"
-          >
-            <span>Scroll to explore</span>
-            <div className="hero__scroll-line" />
-          </div>
-        </Magnet>
+        <div
+          className="hero__scroll-wrapper"
+          style={{
+            opacity: indicatorOpacity,
+            pointerEvents: indicatorOpacity < 0.1 ? 'none' : 'auto',
+          }}
+        >
+          <Magnet magnetStrength={2.2} padding={25}>
+            <div
+              className="hero__scroll-indicator"
+              onClick={scrollToSequence}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  scrollToSequence();
+                }
+              }}
+              title="Scroll to explore"
+            >
+              <span className="hero__scroll-text">Scroll to explore</span>
+              <div className="hero__scroll-line" />
+            </div>
+          </Magnet>
+        </div>
       </div>
     </section>
   );
