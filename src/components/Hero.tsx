@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { DecryptedText } from './reactbits/DecryptedText';
 import { ShinyText } from './reactbits/ShinyText';
-import { Magnet } from './reactbits/Magnet';
 
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -32,13 +31,6 @@ export function Hero() {
   const contentTranslateY = -scrollProgress * 90;
   const contentBlur = Math.min(12, (1 - contentOpacity) * 10);
   const indicatorOpacity = Math.max(0, 1 - scrollProgress / 0.15);
-
-  const scrollToSequence = () => {
-    const el = document.getElementById('scroll-sequence');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <section className="hero" id="hero" ref={heroRef}>
@@ -96,27 +88,13 @@ export function Hero() {
           className="hero__scroll-wrapper"
           style={{
             opacity: indicatorOpacity,
-            pointerEvents: indicatorOpacity < 0.1 ? 'none' : 'auto',
           }}
+          aria-hidden="true"
         >
-          <Magnet magnetStrength={2.2} padding={25}>
-            <div
-              className="hero__scroll-indicator"
-              onClick={scrollToSequence}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  scrollToSequence();
-                }
-              }}
-              title="Scroll to explore"
-            >
-              <span className="hero__scroll-text">Scroll to explore</span>
-              <div className="hero__scroll-line" />
-            </div>
-          </Magnet>
+          <div className="hero__scroll-indicator">
+            <span className="hero__scroll-text">Scroll to explore</span>
+            <div className="hero__scroll-line" />
+          </div>
         </div>
       </div>
     </section>
