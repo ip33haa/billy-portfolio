@@ -96,7 +96,7 @@ export function DecryptedText({
       className={`decrypted-text ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      style={{ display: 'inline-block' }}
+      style={{ display: 'inline-block', lineHeight: 'inherit', verticalAlign: 'baseline' }}
     >
       {displayText.split('').map((char, i) => {
         const isOriginal = char === text[i];

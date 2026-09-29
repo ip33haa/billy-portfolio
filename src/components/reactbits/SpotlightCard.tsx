@@ -43,11 +43,7 @@ export function SpotlightCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={`spotlight-card ${className}`}
-      style={{
-        position: 'relative',
-        overflow: 'hidden',
-        ...style,
-      }}
+      style={style}
       {...props}
     >
       <div
@@ -62,7 +58,9 @@ export function SpotlightCard({
           zIndex: 1,
         }}
       />
-      <div style={{ position: 'relative', zIndex: 2 }}>{children}</div>
+      <div className="spotlight-card__content" style={{ position: 'relative', zIndex: 2 }}>
+        {children}
+      </div>
     </div>
   );
 }

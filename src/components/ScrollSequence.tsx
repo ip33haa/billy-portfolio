@@ -117,33 +117,25 @@ export function ScrollSequence() {
           {storyCards.map((card) => {
             const isVisible = visibleCards.has(card.id);
             return (
-              <div
+              <SpotlightCard
                 key={card.id}
+                spotlightColor="rgba(0, 212, 170, 0.22)"
+                radius={320}
                 className={`scroll-sequence__text-card scroll-sequence__text-card--${card.position} ${
                   isVisible ? 'scroll-sequence__text-card--visible' : ''
                 }`}
                 style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
               >
-                <SpotlightCard
-                  spotlightColor="rgba(0, 212, 170, 0.22)"
-                  radius={280}
-                  style={{
-                    background: 'transparent',
-                    border: 'none',
-                    padding: 0,
-                  }}
-                >
-                  <div className="story-label">
-                    {isVisible ? (
-                      <DecryptedText text={card.label} speed={30} sequential={true} />
-                    ) : (
-                      card.label
-                    )}
-                  </div>
-                  <h3 className="story-heading">{card.heading}</h3>
-                  <p className="story-body">{card.body}</p>
-                </SpotlightCard>
-              </div>
+                <div className="story-label">
+                  {isVisible ? (
+                    <DecryptedText text={card.label} speed={30} sequential={true} />
+                  ) : (
+                    card.label
+                  )}
+                </div>
+                <h3 className="story-heading">{card.heading}</h3>
+                <p className="story-body">{card.body}</p>
+              </SpotlightCard>
             );
           })}
         </div>
